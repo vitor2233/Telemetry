@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D075FB54-11DE-4312-8F7D-838843FBBD9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\Telemetry.API\API.csproj", "{8DA25F6C-2590-4AF7-B85C-119B7C4F11FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telemetry.Application", "src\Telemetry.Application\Telemetry.Application.csproj", "{26579622-D3A2-4C61-9FAF-BB66ECCA36B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telemetry.Communication", "src\Telemetry.Communication\Telemetry.Communication.csproj", "{82B30799-AA1B-4C51-853C-E3405F79FEEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telemetry.Domain", "src\Telemetry.Domain\Telemetry.Domain.csproj", "{E3772ED3-1B9D-4BD9-9E2A-814CAB8ACD47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telemetry.Exceptions", "src\Telemetry.Exceptions\Telemetry.Exceptions.csproj", "{4CC48A57-A38D-4B79-8FE7-C6801213B541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telemetry.Infra", "src\Telemetry.Infra\Telemetry.Infra.csproj", "{9089C98A-56FF-44D4-A5B1-209A86F16358}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DA25F6C-2590-4AF7-B85C-119B7C4F11FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA25F6C-2590-4AF7-B85C-119B7C4F11FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA25F6C-2590-4AF7-B85C-119B7C4F11FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA25F6C-2590-4AF7-B85C-119B7C4F11FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26579622-D3A2-4C61-9FAF-BB66ECCA36B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26579622-D3A2-4C61-9FAF-BB66ECCA36B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26579622-D3A2-4C61-9FAF-BB66ECCA36B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26579622-D3A2-4C61-9FAF-BB66ECCA36B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82B30799-AA1B-4C51-853C-E3405F79FEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82B30799-AA1B-4C51-853C-E3405F79FEEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82B30799-AA1B-4C51-853C-E3405F79FEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82B30799-AA1B-4C51-853C-E3405F79FEEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3772ED3-1B9D-4BD9-9E2A-814CAB8ACD47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3772ED3-1B9D-4BD9-9E2A-814CAB8ACD47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3772ED3-1B9D-4BD9-9E2A-814CAB8ACD47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3772ED3-1B9D-4BD9-9E2A-814CAB8ACD47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC48A57-A38D-4B79-8FE7-C6801213B541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC48A57-A38D-4B79-8FE7-C6801213B541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC48A57-A38D-4B79-8FE7-C6801213B541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC48A57-A38D-4B79-8FE7-C6801213B541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9089C98A-56FF-44D4-A5B1-209A86F16358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9089C98A-56FF-44D4-A5B1-209A86F16358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9089C98A-56FF-44D4-A5B1-209A86F16358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9089C98A-56FF-44D4-A5B1-209A86F16358}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8DA25F6C-2590-4AF7-B85C-119B7C4F11FB} = {D075FB54-11DE-4312-8F7D-838843FBBD9D}
+		{26579622-D3A2-4C61-9FAF-BB66ECCA36B6} = {D075FB54-11DE-4312-8F7D-838843FBBD9D}
+		{82B30799-AA1B-4C51-853C-E3405F79FEEE} = {D075FB54-11DE-4312-8F7D-838843FBBD9D}
+		{E3772ED3-1B9D-4BD9-9E2A-814CAB8ACD47} = {D075FB54-11DE-4312-8F7D-838843FBBD9D}
+		{4CC48A57-A38D-4B79-8FE7-C6801213B541} = {D075FB54-11DE-4312-8F7D-838843FBBD9D}
+		{9089C98A-56FF-44D4-A5B1-209A86F16358} = {D075FB54-11DE-4312-8F7D-838843FBBD9D}
+	EndGlobalSection
+EndGlobal
