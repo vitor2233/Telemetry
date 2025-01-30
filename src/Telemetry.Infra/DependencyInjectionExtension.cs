@@ -5,6 +5,7 @@ using Telemetry.Infra.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Telemetry.Infra.Mqtt;
 
 namespace Telemetry.Infra;
 
@@ -14,6 +15,7 @@ public static class DependencyInjectionExtension
     {
         AddDbContext(services, configuration);
         AddRepositories(services);
+        AddMqttService(services);
     }
 
     private static void AddRepositories(IServiceCollection services)
@@ -28,5 +30,10 @@ public static class DependencyInjectionExtension
     {
         var connectionString = configuration.GetConnectionString("Connection");
         services.AddDbContext<TelemetryDbContext>(config => config.UseNpgsql(connectionString));
+    }
+
+    private static void AddMqttService(IServiceCollection services)
+    {
+        services.AddSingleton<IMqttService, MqttService>();
     }
 }

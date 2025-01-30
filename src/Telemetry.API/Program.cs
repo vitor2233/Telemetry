@@ -2,6 +2,7 @@ using Telemetry.Infra.Migrations;
 using Telemetry.Infra;
 using Telemetry.Application;
 using Telemetry.API.Filters;
+using Telemetry.Infra.Mqtt;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -22,6 +23,10 @@ builder.Services.AddApplication();
 builder.Services.AddInfra(builder.Configuration);
 
 var app = builder.Build();
+
+//Iniciar MQTT
+var mqttService = app.Services.GetRequiredService<IMqttService>();
+await mqttService.StartAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
