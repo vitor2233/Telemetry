@@ -5,6 +5,7 @@ using Telemetry.Application.UseCases.Machines.Delete;
 using Telemetry.Application.UseCases.Machines.Update;
 using Telemetry.Application.UseCases.Machines.Register;
 using Telemetry.Application.UseCases.Machines.GetById;
+using Telemetry.Domain.Services;
 
 namespace Telemetry.API.Controllers;
 
@@ -12,6 +13,13 @@ namespace Telemetry.API.Controllers;
 [ApiController]
 public class MachinesController : ControllerBase
 {
+    private readonly IWebSocketService _webSocketService;
+
+    public MachinesController(IWebSocketService webSocketService)
+    {
+        _webSocketService = webSocketService;
+    }
+
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(typeof(GetMachineByIdResponseJson), StatusCodes.Status200OK)]
@@ -58,5 +66,20 @@ public class MachinesController : ControllerBase
     {
         await useCase.Execute(id);
         return NoContent();
+    }
+
+    [HttpGet]
+    [Route("ws")]
+    public async Task ConnectToWebSocket()
+    {
+        if (HttpContext.WebSockets.IsWebSocketRequest)
+        {
+            var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+            await _webSocketService.AddClientAsync(webSocket);
+        }
+        else
+        {
+            HttpContext.Response.StatusCode = 400;
+        }
     }
 }

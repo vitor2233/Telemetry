@@ -1,12 +1,20 @@
+using Microsoft.Extensions.DependencyInjection;
 using Telemetry.Domain.Contracts.Mqtt;
+using Telemetry.Domain.Services;
 
 namespace Telemetry.Application.UseCases.Location;
 
 internal class SendMachineLocationUseCase : ISendMachineLocationUseCase
 {
-    public Task Execute(LocationMessage location)
+    private readonly IServiceProvider _serviceProvider;
+
+    public SendMachineLocationUseCase(IServiceProvider serviceProvider)
     {
-        Console.Write(location);
-        throw new NotImplementedException();
+        _serviceProvider = serviceProvider;
+    }
+    public async Task Execute(LocationMessage location)
+    {
+        var webSocketService = _serviceProvider.GetRequiredService<IWebSocketService>();
+        await webSocketService.SendToClientsAsync(location);
     }
 }

@@ -39,7 +39,7 @@ app.UseHttpsRedirection();
 app.UseCors("TelemetryFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseWebSockets();
 app.MapControllers();
 
 await MigrateDatabase();

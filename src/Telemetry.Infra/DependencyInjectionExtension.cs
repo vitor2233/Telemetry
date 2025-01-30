@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Telemetry.Infra.Mqtt;
+using Telemetry.Infra.WebSockets;
+using Telemetry.Domain.Services;
 
 namespace Telemetry.Infra;
 
@@ -15,7 +17,7 @@ public static class DependencyInjectionExtension
     {
         AddDbContext(services, configuration);
         AddRepositories(services);
-        AddMqttService(services);
+        AddServices(services);
     }
 
     private static void AddRepositories(IServiceCollection services)
@@ -32,8 +34,9 @@ public static class DependencyInjectionExtension
         services.AddDbContext<TelemetryDbContext>(config => config.UseNpgsql(connectionString));
     }
 
-    private static void AddMqttService(IServiceCollection services)
+    private static void AddServices(IServiceCollection services)
     {
         services.AddSingleton<IMqttService, MqttService>();
+        services.AddSingleton<IWebSocketService, WebSocketService>();
     }
 }
