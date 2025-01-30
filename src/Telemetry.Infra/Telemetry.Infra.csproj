@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Telemetry.Domain\Telemetry.Domain.csproj" />
+    <ProjectReference Include="..\Telemetry.Application\Telemetry.Application.csproj" />
   </ItemGroup>
 
 </Project>

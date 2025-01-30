@@ -1,9 +1,12 @@
 using System;
 using System.Text;
 using System.Text.Json;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Protocol;
+using Telemetry.Application.Commands;
 using Telemetry.Domain.Contracts.Mqtt;
 
 namespace Telemetry.Infra.Mqtt;
@@ -16,11 +19,13 @@ public class MqttService : IMqttService
     };
 
     private readonly IMqttClient _mqttClient;
+    private readonly IServiceProvider _serviceProvider;
 
-    public MqttService()
+    public MqttService(IServiceProvider serviceProvider)
     {
         var factory = new MqttFactory();
         _mqttClient = factory.CreateMqttClient();
+        _serviceProvider = serviceProvider;
     }
 
     public async Task StartAsync()
@@ -36,14 +41,20 @@ public class MqttService : IMqttService
         await _mqttClient.SubscribeAsync("location/+", MqttQualityOfServiceLevel.AtMostOnce);
     }
 
-    private Task HandleIncomingMessage(MqttApplicationMessageReceivedEventArgs args)
+    private async Task HandleIncomingMessage(MqttApplicationMessageReceivedEventArgs args)
     {
         var payload = Encoding.UTF8.GetString(args.ApplicationMessage.PayloadSegment);
         var location = JsonSerializer.Deserialize<LocationMessage>(payload, JsonOptions);
 
+        if (location is not null)
+        {
+            using (var scope = _serviceProvider.CreateScope())
+            {
+                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+                await mediator.Send(new LocationReceivedCommand(location));
+            }
+        }
+
         Console.WriteLine($"Mensagem recebida: {location}");
-
-
-        return Task.CompletedTask;
     }
 }
